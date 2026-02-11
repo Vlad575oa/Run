@@ -75,9 +75,26 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Async load Material Symbols to avoid render-blocking on mobile */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,400,0&display=swap"
           rel="stylesheet"
+          media="print"
+          // @ts-expect-error — onLoad on link is valid HTML but not typed in React
+          onLoad="this.media='all'"
+        />
+        <noscript>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,400,0&display=swap"
+            rel="stylesheet"
+          />
+        </noscript>
+        {/* Preload LCP hero image */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/Hero_1.webp"
+          type="image/webp"
         />
         <link rel="preconnect" href="https://mc.yandex.ru" />
       </head>

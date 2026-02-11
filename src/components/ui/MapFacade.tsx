@@ -49,6 +49,8 @@ export const MapFacade: React.FC<MapFacadeProps> = ({ src, title, className, ima
                     fill
                     className="object-cover pointer-events-none"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={75}
+                    loading="lazy"
                 />
             ) : (
                 shouldLoad ? (

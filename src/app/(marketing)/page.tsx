@@ -110,6 +110,8 @@ export default function HomePage() {
                                         fill
                                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                                         loading="lazy"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        quality={75}
                                     />
                                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-teal-700 uppercase tracking-wide shadow-sm z-10">
                                         Вторник • 19:00
@@ -139,6 +141,8 @@ export default function HomePage() {
                                         fill
                                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                                         loading="lazy"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        quality={75}
                                     />
                                     <div className="absolute top-4 left-4 bg-primary text-text-main px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-sm z-10">
                                         Суббота • 9:00
