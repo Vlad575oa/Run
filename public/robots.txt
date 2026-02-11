@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /studio/
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://run82.ru/sitemap.xml
+Host: run82.ru
