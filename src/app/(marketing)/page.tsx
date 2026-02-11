@@ -38,49 +38,59 @@ export default function HomePage() {
                             </div>
                             <div className="flex flex-col gap-6 lg:w-1/2 lg:pr-10">
                                 <div className="flex flex-col gap-4 text-left">
-                                    <div className="inline-flex items-center gap-2 self-start rounded-full bg-sand-beige px-3 py-1 text-xs font-bold uppercase tracking-wide text-text-muted">
-                                        <span className="w-2 h-2 rounded-full bg-primary" />
-                                        Дружелюбно и социально
+                                    <BlurFade delay={0.1}>
+                                        <div className="inline-flex items-center gap-2 self-start rounded-full bg-sand-beige px-3 py-1 text-xs font-bold uppercase tracking-wide text-text-muted">
+                                            <span className="w-2 h-2 rounded-full bg-primary" />
+                                            Дружелюбно и социально
+                                        </div>
+                                    </BlurFade>
+                                    <BlurFade delay={0.2}>
+                                        <h1 className="text-text-main text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight">
+                                            КофеРан — беговое сообщество для всех
+                                        </h1>
+                                    </BlurFade>
+                                    <BlurFade delay={0.3}>
+                                        <p className="text-text-muted text-lg font-normal leading-relaxed">
+                                            Самый дружелюбный беговой клуб. Никаких требований к темпу,
+                                            только хорошее настроение и вкусный кофе.
+                                        </p>
+                                    </BlurFade>
+                                </div>
+                                <BlurFade delay={0.4}>
+                                    <div className="flex flex-wrap gap-4">
+                                        <Link
+                                            href={SITE_CONFIG.telegram.mainGroup}
+                                            target="_blank"
+                                            className="flex cursor-pointer items-center justify-center rounded-full h-12 px-8 bg-primary text-text-main text-base font-bold shadow-md hover:bg-[#d67e25] transition-colors"
+                                        >
+                                            <span className="truncate">Хочу на пробежку</span>
+                                        </Link>
+                                        <Link
+                                            href="/cities"
+                                            className="flex cursor-pointer items-center justify-center rounded-full h-12 px-8 bg-transparent border-2 border-[#e5e1dc] text-text-main text-base font-bold hover:bg-sand-beige transition-colors"
+                                        >
+                                            <span className="truncate">Города</span>
+                                        </Link>
                                     </div>
-                                    <h1 className="text-text-main text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight">
-                                        КофеРан — беговое сообщество для всех
-                                    </h1>
-                                    <p className="text-text-muted text-lg font-normal leading-relaxed">
-                                        Самый дружелюбный беговой клуб. Никаких требований к темпу,
-                                        только хорошее настроение и вкусный кофе.
-                                    </p>
-                                </div>
-                                <div className="flex flex-wrap gap-4">
-                                    <Link
-                                        href={SITE_CONFIG.telegram.mainGroup}
-                                        target="_blank"
-                                        className="flex cursor-pointer items-center justify-center rounded-full h-12 px-8 bg-primary text-text-main text-base font-bold shadow-md hover:bg-[#d67e25] transition-colors"
-                                    >
-                                        <span className="truncate">Хочу на пробежку</span>
-                                    </Link>
-                                    <Link
-                                        href="/cities"
-                                        className="flex cursor-pointer items-center justify-center rounded-full h-12 px-8 bg-transparent border-2 border-[#e5e1dc] text-text-main text-base font-bold hover:bg-sand-beige transition-colors"
-                                    >
-                                        <span className="truncate">Города</span>
-                                    </Link>
-                                </div>
-                                <div className="flex items-center gap-3 mt-2">
-                                    <div className="flex -space-x-3">
-                                        <div className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200">
-                                            <Image src="/images/avatar_1.webp" alt="Runner" fill className="object-cover" sizes="40px" loading="lazy" />
+                                </BlurFade>
+                                <BlurFade delay={0.5}>
+                                    <div className="flex items-center gap-3 mt-2">
+                                        <div className="flex -space-x-3">
+                                            <div className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200">
+                                                <Image src="/images/avatar_1.webp" alt="Runner" fill className="object-cover" sizes="40px" loading="lazy" />
+                                            </div>
+                                            <div className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200">
+                                                <Image src="/images/avatar_2.webp" alt="Runner" fill className="object-cover" sizes="40px" loading="lazy" />
+                                            </div>
+                                            <div className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200">
+                                                <Image src="/images/avatar_3.webp" alt="Runner" fill className="object-cover" sizes="40px" loading="lazy" />
+                                            </div>
                                         </div>
-                                        <div className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200">
-                                            <Image src="/images/avatar_2.webp" alt="Runner" fill className="object-cover" sizes="40px" loading="lazy" />
-                                        </div>
-                                        <div className="relative w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200">
-                                            <Image src="/images/avatar_3.webp" alt="Runner" fill className="object-cover" sizes="40px" loading="lazy" />
-                                        </div>
+                                        <p className="text-sm font-medium text-text-muted">
+                                            С нами уже 500+ бегунов
+                                        </p>
                                     </div>
-                                    <p className="text-sm font-medium text-text-muted">
-                                        С нами уже 500+ бегунов
-                                    </p>
-                                </div>
+                                </BlurFade>
                             </div>
                         </div>
                     </div>
@@ -179,7 +189,7 @@ export default function HomePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="flex flex-1 flex-row items-start gap-4 rounded-lg border border-[#e5e1dc] bg-white p-6 hover:border-primary/50 transition-colors shadow-sm">
                             <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sand-beige flex items-center justify-center text-primary">
-                                <span className="text-2xl">⚡</span>
+                                <span className="material-symbols-outlined text-2xl">pace</span>
                             </div>
                             <div className="flex flex-col gap-1">
                                 <h3 className="text-text-main text-xl font-bold leading-tight">
@@ -193,7 +203,7 @@ export default function HomePage() {
                         </div>
                         <div className="flex flex-1 flex-row items-start gap-4 rounded-lg border border-[#e5e1dc] bg-white p-6 hover:border-primary/50 transition-colors shadow-sm">
                             <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sand-beige flex items-center justify-center text-primary">
-                                <span className="text-2xl">🤝</span>
+                                <span className="material-symbols-outlined text-2xl">group_add</span>
                             </div>
                             <div className="flex flex-col gap-1">
                                 <h3 className="text-text-main text-xl font-bold leading-tight">
@@ -207,7 +217,7 @@ export default function HomePage() {
                         </div>
                         <div className="flex flex-1 flex-row items-start gap-4 rounded-lg border border-[#e5e1dc] bg-white p-6 hover:border-primary/50 transition-colors shadow-sm">
                             <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sand-beige flex items-center justify-center text-primary">
-                                <span className="text-2xl">☕</span>
+                                <span className="material-symbols-outlined text-2xl">local_cafe</span>
                             </div>
                             <div className="flex flex-col gap-1">
                                 <h3 className="text-text-main text-xl font-bold leading-tight">
@@ -221,7 +231,7 @@ export default function HomePage() {
                         </div>
                         <div className="flex flex-1 flex-row items-start gap-4 rounded-lg border border-[#e5e1dc] bg-white p-6 hover:border-primary/50 transition-colors shadow-sm">
                             <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sand-beige flex items-center justify-center text-primary">
-                                <span className="text-2xl">🎟️</span>
+                                <span className="material-symbols-outlined text-2xl">confirmation_number</span>
                             </div>
                             <div className="flex flex-col gap-1">
                                 <h3 className="text-text-main text-xl font-bold leading-tight">
