@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { m, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import { cn } from '@/lib/utils'
 import { faqData } from '@/lib/constants/faq'
 import { BlurFade } from '@/components/ui/BlurFade'
@@ -50,7 +50,7 @@ export const FAQ = () => {
                                 </button>
                                 <AnimatePresence>
                                     {isOpen && (
-                                        <m.div
+                                        <motion.div
                                             initial={{ height: 0, opacity: 0 }}
                                             animate={{ height: "auto", opacity: 1 }}
                                             exit={{ height: 0, opacity: 0 }}
@@ -59,7 +59,7 @@ export const FAQ = () => {
                                             <div className="px-5 pb-6 text-text-muted text-base leading-relaxed whitespace-pre-line border-t border-gray-100 pt-4">
                                                 {item.answer}
                                             </div>
-                                        </m.div>
+                                        </motion.div>
                                     )}
                                 </AnimatePresence>
                             </BlurFade>

@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { m, useInView } from "motion/react";
+import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
 const SparklesCore = dynamic(() => import("@/components/ui/sparkles").then((mod) => mod.SparklesCore), {
@@ -50,7 +50,7 @@ export const JoinCTA: React.FC = () => {
                         фото с пробежек первыми.
                     </p>
                     <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full pointer-events-auto">
-                        <m.div
+                        <motion.div
                             animate={{ scale: [1, 1.05, 1] }}
                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                             className="w-full md:w-auto"
@@ -62,9 +62,9 @@ export const JoinCTA: React.FC = () => {
                             >
                                 Хочу на пробежку
                             </Link>
-                        </m.div>
+                        </motion.div>
 
-                        <m.div
+                        <motion.div
                             animate={{ scale: [1, 1.05, 1] }}
                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                             className="w-full md:w-auto"
@@ -77,7 +77,7 @@ export const JoinCTA: React.FC = () => {
                             >
                                 Беговые клубы
                             </a>
-                        </m.div>
+                        </motion.div>
                     </div>
                 </div>
             </div>

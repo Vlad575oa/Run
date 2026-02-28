@@ -1,7 +1,6 @@
 "use client";
 
-import { m, useInView, Variants } from "motion/react";
-import { useRef } from "react";
+import { motion, Variants } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface TextRevealProps {
@@ -17,9 +16,6 @@ export const TextReveal = ({
     delay = 0,
     duration = 0.5
 }: TextRevealProps) => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-10%" });
-
     const words = text.split(" ");
 
     const container: Variants = {
@@ -50,22 +46,22 @@ export const TextReveal = ({
     };
 
     return (
-        <m.h1
-            ref={ref}
+        <motion.h1
             className={cn("flex flex-wrap overflow-hidden", className)}
             variants={container}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
         >
             {words.map((word, index) => (
-                <m.span
+                <motion.span
                     key={index}
                     variants={child}
                     className="mr-[0.2em] last:mr-0 inline-block"
                 >
                     {word}
-                </m.span>
+                </motion.span>
             ))}
-        </m.h1>
+        </motion.h1>
     );
 };

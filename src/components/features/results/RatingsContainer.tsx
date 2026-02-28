@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useMemo } from 'react'
-import { m, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import { RatingAthlete } from '@/entities'
 
 interface RatingsContainerProps {
@@ -166,7 +166,7 @@ export function RatingsContainer({ initialAthletes }: RatingsContainerProps) {
                     <div className="divide-y divide-[#f0f4f2] min-w-[600px]">
                         <AnimatePresence mode="popLayout">
                             {filteredAthletes.map((athlete, index) => (
-                                <m.div
+                                <motion.div
                                     key={athlete.name}
                                     layout
                                     initial={{ opacity: 0 }}
@@ -184,7 +184,7 @@ export function RatingsContainer({ initialAthletes }: RatingsContainerProps) {
                                     </div>
                                     <div className="w-32 text-center text-sm text-[#61896f] shrink-0 hidden sm:block font-medium">{athlete.ageCategory}</div>
                                     <div className="w-32 text-right font-black text-[#111813] shrink-0 tabular-nums">{athlete.bestTimes[activeDistance]}</div>
-                                </m.div>
+                                </motion.div>
                             ))}
                         </AnimatePresence>
                         {filteredAthletes.length === 0 && (

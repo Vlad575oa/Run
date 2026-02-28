@@ -1,21 +1,17 @@
-'use client'
-
-import React, { useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
-import { m } from 'motion/react'
+import { MobileMenu } from './MobileMenu'
+import { NavUnderline, ShimmerButton } from './HeaderInteractions'
+import { headers } from 'next/headers'
 
-export const Header: React.FC = () => {
-    const pathname = usePathname()
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-    const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
+export const Header: React.FC = async () => {
+    const headersList = await headers()
+    const pathname = headersList.get('x-pathname') || '/'
 
     const navLinks = [
         { name: 'Главная', href: '/' },
         { name: 'Медиа', href: '/media' },
-        // { name: 'Пробежки', href: '/runs' },
         { name: 'Результаты', href: '/results' },
         { name: 'Блог', href: '/blog' },
         { name: 'Города', href: '/cities' },
@@ -25,7 +21,19 @@ export const Header: React.FC = () => {
     ]
 
     return (
-        <div className="w-full border-b border-[#f4f2f0] bg-background-light/95 backdrop-blur-sm sticky top-0 z-50 transition-all duration-300">
+        <header className="w-full border-b border-[#f4f2f0] bg-background-light/95 backdrop-blur-sm sticky top-0 z-50 transition-all duration-300">
+            {/* Business info bar */}
+            <div className="w-full bg-[#f4f2f0]/60 border-b border-[#e5e1dc]/50">
+                <div className="flex justify-center w-full">
+                    <div className="flex w-full max-w-[1440px] items-center justify-between px-6 py-1.5 lg:px-10 text-[10px] sm:text-xs text-text-muted gap-2 flex-wrap">
+                        <span>© 2026, Самозанятый Олейник Владислав Александрович</span>
+                        <div className="flex items-center gap-3 sm:gap-4">
+                            <span>ИНН: 771402421981</span>
+                            <a href="mailto:vlad575@mail.ru" className="hover:text-primary transition-colors">vlad575@mail.ru</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className="flex justify-center w-full">
                 <div className="flex w-full max-w-[1440px] items-center justify-between px-6 py-4 lg:px-10">
                     <div className="flex items-center gap-3">
@@ -51,7 +59,7 @@ export const Header: React.FC = () => {
                         </Link>
                     </div>
 
-                    <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+                    <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
                         {navLinks.map((link) => {
                             const isActive = pathname === link.href
                             return (
@@ -62,91 +70,21 @@ export const Header: React.FC = () => {
                                         }`}
                                 >
                                     {link.name}
-                                    {isActive && (
-                                        <m.div
-                                            layoutId="nav-underline"
-                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                                            initial={false}
-                                        />
-                                    )}
+                                    {isActive && <NavUnderline />}
                                 </Link>
                             )
                         })}
-                    </div>
+                    </nav>
 
                     <div className="flex items-center gap-4">
+                        <ShimmerButton href="https://t.me/coffeerunparty">
+                            Хочу на пробежку
+                        </ShimmerButton>
 
-
-                        <m.div
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            animate={{
-                                scale: [1, 1.02, 1],
-                            }}
-                            transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                            className="relative group"
-                        >
-                            <Link
-                                href="https://t.me/coffeerunparty"
-                                className="hidden sm:flex relative min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-primary shadow-sm hover:shadow-orange-500/40 hover:shadow-lg transition-all duration-300 border border-white/10"
-                            >
-                                {/* Shimmer Effect */}
-                                <m.div
-                                    className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 translate-x-[-150%] group-hover:duration-700"
-                                    animate={{
-                                        translateX: ["150%", "-150%"],
-                                    }}
-                                    transition={{
-                                        duration: 3,
-                                        repeat: Infinity,
-                                        ease: "linear",
-                                        repeatDelay: 1
-                                    }}
-                                />
-                                <span className="relative z-10 truncate text-white font-black tracking-wide">
-                                    Хочу на пробежку
-                                </span>
-                            </Link>
-                        </m.div>
-
-                        <button
-                            onClick={toggleMenu}
-                            className="lg:hidden flex items-center justify-center size-10 rounded-full hover:bg-black/5"
-                        >
-                            <span className="material-symbols-outlined">menu</span>
-                        </button>
+                        <MobileMenu navLinks={navLinks} />
                     </div>
                 </div>
             </div>
-
-            {/* Mobile Menu */}
-            {isMobileMenuOpen && (
-                <div className="lg:hidden absolute top-full left-0 w-full bg-background-light border-b border-[#f4f2f0] shadow-lg flex flex-col p-4 gap-4 animate-in slide-in-from-top-2">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            className="text-text-main text-base font-medium hover:text-primary transition-colors py-2 border-b border-gray-100 last:border-0"
-                            href={link.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-                    <Link
-                        href="https://t.me/coffeerunparty"
-                        className="w-full mt-2 cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-6 bg-primary shadow-sm hover:bg-[#d67e25] transition-colors flex"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                        <span className="truncate text-white font-black tracking-wide">
-                            Хочу на пробежку
-                        </span>
-                    </Link>
-                </div>
-            )}
-        </div>
+        </header>
     )
 }

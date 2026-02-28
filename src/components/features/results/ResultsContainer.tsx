@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { m, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import { Result } from '@/entities'
 
 interface ResultsContainerProps {
@@ -140,7 +140,7 @@ export function ResultsContainer({ initialResults }: ResultsContainerProps) {
                     <tbody className="divide-y divide-[#f4f2f0]">
                         <AnimatePresence mode="popLayout">
                             {paginatedResults.map((result) => (
-                                <m.tr
+                                <motion.tr
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
@@ -185,7 +185,7 @@ export function ResultsContainer({ initialResults }: ResultsContainerProps) {
                                         </p>
                                         <p className="text-[10px] text-[#877664] font-medium opacity-60">{result.city || 'Симферополь'}</p>
                                     </td>
-                                </m.tr>
+                                </motion.tr>
                             ))}
                         </AnimatePresence>
                         {filteredResults.length === 0 && (

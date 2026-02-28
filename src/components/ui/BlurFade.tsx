@@ -1,7 +1,6 @@
 "use client";
 
-import { m, useInView, Variants } from "motion/react";
-import { useRef } from "react";
+import { motion, Variants } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface BlurFadeProps {
@@ -21,9 +20,6 @@ export const BlurFade = ({
     yOffset = 10,
     blur = "8px"
 }: BlurFadeProps) => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-10%" });
-
     const variants: Variants = {
         hidden: {
             y: yOffset,
@@ -43,14 +39,14 @@ export const BlurFade = ({
     };
 
     return (
-        <m.div
-            ref={ref}
+        <motion.div
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
             variants={variants}
             className={cn(className)}
         >
             {children}
-        </m.div>
+        </motion.div>
     );
 };

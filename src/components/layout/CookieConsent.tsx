@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { m, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import Link from 'next/link'
 
 export const CookieConsent: React.FC = () => {
@@ -25,7 +25,7 @@ export const CookieConsent: React.FC = () => {
     return (
         <AnimatePresence>
             {isVisible && (
-                <m.div
+                <motion.div
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: 100, opacity: 0 }}
@@ -47,7 +47,7 @@ export const CookieConsent: React.FC = () => {
                             Принять
                         </button>
                     </div>
-                </m.div>
+                </motion.div>
             )}
         </AnimatePresence>
     )
