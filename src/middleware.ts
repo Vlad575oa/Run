@@ -7,6 +7,14 @@ export function middleware(request: NextRequest) {
     const pathname = url.pathname
     const requestHeaders = new Headers(request.headers)
 
+    // --- РЕДИРЕКТ С WWW НА БЕЗ-WWW ---
+    const hostname = request.headers.get('host') || ''
+    if (hostname.startsWith('www.')) {
+        const newHostname = hostname.replace(/^www\./, '')
+        url.hostname = newHostname
+        return NextResponse.redirect(url, 301)
+    }
+
     // Set x-pathname header for server components to know the current path
     requestHeaders.set('x-pathname', pathname)
     requestHeaders.set('x-url', request.url)
