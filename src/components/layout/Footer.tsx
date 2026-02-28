@@ -20,6 +20,8 @@ const footerLinks = {
     legal: [
         { label: 'Политика конфиденциальности', href: '/privacy' },
         { label: 'Пользовательское соглашение', href: '/terms' },
+        { label: 'Публичная оферта', href: '/offer' },
+        { label: 'Доставка и возврат', href: '/delivery' },
     ],
 }
 
@@ -197,9 +199,14 @@ export function Footer() {
                 {/* Bottom */}
                 <div className="mt-12 pt-8 border-t border-gray-800">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p className="text-gray-500 text-sm">
-                            © {currentYear} {SITE_CONFIG.name}. Все права защищены.
-                        </p>
+                        <div className="flex flex-col items-center md:items-start gap-1">
+                            <p className="text-gray-500 text-sm">
+                                © 2026, Самозанятый Олейник Владислав Александрович
+                            </p>
+                            <p className="text-gray-600 text-xs">
+                                ИНН: 771402421981 | <a href="mailto:vlad575@mail.ru" className="hover:text-gray-400">vlad575@mail.ru</a>
+                            </p>
+                        </div>
                         <div className="flex flex-col md:flex-row items-center gap-6">
                             <div className="flex gap-6">
                                 {footerLinks.legal.map((link) => (

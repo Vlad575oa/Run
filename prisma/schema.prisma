@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id          Int         @id @default(autoincrement())
+  name        String
+  slug        String      @unique
+  description String
+  price       Int         // цена в копейках (299000 = 2990₽)
+  image       String
+  sizes       String[]    // ["S", "M", "L", "XL"]
+  inStock     Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  orderItems  OrderItem[]
+}
+
+enum OrderStatus {
+  NEW
+  PAID
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum DeliveryType {
+  PICKUP
+  DELIVERY
+}
+
+model Order {
+  id           Int          @id @default(autoincrement())
+  orderNumber  String       @unique
+  status       OrderStatus  @default(NEW)
+  customerName String
+  phone        String
+  email        String
+  deliveryType DeliveryType @default(PICKUP)
+  address      String?
+  comment      String?
+  totalAmount  Int          // в копейках
+  items        OrderItem[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   Int
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+  size      String
+  quantity  Int
+  price     Int     // цена за штуку в копейках на момент заказа
+}

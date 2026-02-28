@@ -5,6 +5,7 @@ import { SITE_CONFIG } from '@/lib/constants'
 import { generateOrganizationSchema } from '@/lib/seo'
 import { CookieConsent } from '@/components/layout'
 import { YandexMetrika } from '@/components/analytics/YandexMetrika'
+import { ShopProviders } from '@/components/features/shop/ShopProviders'
 
 import { Suspense } from 'react'
 
@@ -97,7 +98,9 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <YandexMetrika />
         </Suspense>
-        {children}
+        <ShopProviders>
+          {children}
+        </ShopProviders>
         <CookieConsent />
       </body>
     </html>
