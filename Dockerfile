@@ -22,13 +22,15 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Install OpenSSL (fixes Prisma SSL detection warning)
+RUN apk add --no-cache openssl
+
 # Generate Prisma Client (dummy URL — not connecting to DB, just generating types)
 ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
 RUN npx prisma generate
 
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
+# Limit Node.js memory to prevent OOM on 2GB servers
+ENV NODE_OPTIONS="--max-old-space-size=1536"
 ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN \
