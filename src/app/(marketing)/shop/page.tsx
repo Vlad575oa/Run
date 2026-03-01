@@ -13,12 +13,32 @@ export const metadata: Metadata = generatePageMetadata({
 const products = [
     {
         id: 1,
-        name: 'Худи КофеРан',
-        price: 299000, // в копейках
+        name: 'Худи КофеРан (Черный)',
+        price: 299000,
         priceDisplay: '2 990 ₽',
-        image: '/images/shop-item.webp',
-        description: 'Мягкий футер, свободный крой. Идеально для восстановления после бега. Состав: 80% хлопок, 20% полиэстер.',
-        badge: 'Bestseller',
+        image: '/images/hoodie-black.png',
+        description: 'Мягкий футер, свободный крой. Исполнение в классическом черном цвете. Состав: 80% хлопок, 20% полиэстер.',
+        badge: 'NEW',
+        sizes: ['S', 'M', 'L', 'XL'],
+    },
+    {
+        id: 2,
+        name: 'Футболка КофеРан (Белая)',
+        price: 99000,
+        priceDisplay: '990 ₽',
+        image: '/images/tshirt-white.jpg',
+        description: 'Легкая хлопковая футболка. Идеально для бега в теплую погоду или прогулок. 100% хлопок.',
+        badge: 'Best Price',
+        sizes: ['S', 'M', 'L', 'XL'],
+    },
+    {
+        id: 3,
+        name: 'Футболка КофеРан (Черная)',
+        price: 99000,
+        priceDisplay: '990 ₽',
+        image: '/images/tshirt-black.jpg',
+        description: 'Стильная черная футболка с фирменным принтом. Дышащий материал, комфортная посадка.',
+        badge: 'Best Price',
         sizes: ['S', 'M', 'L', 'XL'],
     },
 ]
